@@ -1,0 +1,16 @@
+[
+{
+  "modid": "heartsplus",
+  "name": "Hearts Plus",
+  "description": "Permanent and temporary health increase!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://minecraft.curseforge.com/projects/heartsplus",
+  "updateUrl": "",
+  "authorList": ["UpcraftLP"],
+  "credits": "(C)2017 UpcraftLP",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
