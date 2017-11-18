@@ -2,6 +2,9 @@ package mod.upcraftlp.heartsplus.proxy;
 
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
 import mod.upcraftlp.heartsplus.Reference;
+import mod.upcraftlp.heartsplus.util.ExtraHearts;
+import mod.upcraftlp.heartsplus.util.IExtraHearts;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -14,6 +17,7 @@ public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         UpdateChecker.registerMod(Reference.MODID);
+        CapabilityManager.INSTANCE.register(IExtraHearts.class, new ExtraHearts.Storage(), ExtraHearts.class);
     }
 
     public void init(FMLInitializationEvent event) {
