@@ -1,0 +1,20 @@
+{
+    "collect_black_heart": {
+        "heartsplus": "passive",
+        "sounds": [
+            {"name": "heartsplus:collect_black_heart","stream": false}
+        ]
+    },
+    "collect_white_heart": {
+        "spookycraft": "passive",
+        "sounds": [
+            {"name": "heartsplus:collect_white_heart","stream": false}
+        ]
+    },
+    "evolve_heart": {
+        "heartsplus": "passive",
+        "sounds": [
+            {"name": "heartsplus:evolve_heart","stream": false}
+        ]
+    }
+}
