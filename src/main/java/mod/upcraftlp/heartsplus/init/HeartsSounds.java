@@ -11,9 +11,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class HeartsSounds {
 
     //sounds are created by initializing a field for them to null
-    public static final SoundEvent COLLECT_BLACK_HEART = null;
-
-    public static final SoundEvent COLLECT_WHITE_HEART = null;
-    public static final SoundEvent EVOLVE_HEART = null;
-
+    public static final SoundEvent COLLECT_RED_HEART = null; //pick up red heart
+    public static final SoundEvent COLLECT_BLACK_HEART = null; //pick up black heart
+    public static final SoundEvent COLLECT_WHITE_HEART = null; //pick up white heart
+    public static final SoundEvent EVOLVE_HEART = null; //transform white heart into red heart ("holy" sound)
 }
