@@ -2,6 +2,7 @@ package mod.upcraftlp.heartsplus.proxy;
 
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
 import mod.upcraftlp.heartsplus.Reference;
+import mod.upcraftlp.heartsplus.util.CommandHearts;
 import mod.upcraftlp.heartsplus.util.ExtraHearts;
 import mod.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -28,6 +29,6 @@ public class CommonProxy {
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
-
+        event.registerServerCommand(new CommandHearts());
     }
 }
