@@ -23,7 +23,7 @@ public class Reference {
     public static final String MODNAME = "Hearts Plus";
     public static final String MODID = "heartsplus";
     public static final String DEPENDENCIES = "required-after:forge@[14.23.0.2489,);required-after:craftdevcore@[2.2.8,)";
-    public static final String UPDATE_JSON = "";
+    public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/HeartsPlus/master/versions.json";
     public static final String WEBSITE = "https://minecraft.curseforge.com/projects/heartsplus";
 
     public static final String CLIENTPROXY = "mod.upcraftlp.heartsplus.proxy.ClientProxy";
