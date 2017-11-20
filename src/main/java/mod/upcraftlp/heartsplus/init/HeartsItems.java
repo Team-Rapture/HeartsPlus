@@ -13,7 +13,5 @@ import static mod.upcraftlp.heartsplus.util.EnumHeartType.*;
 @GameRegistry.ObjectHolder(Reference.MODID)
 public class HeartsItems {
 
-    public static final Item BLACK_HEART = new ItemHeart(BLACK);
-    public static final Item WHITE_HEART = new ItemHeart(WHITE);
-    public static final Item RED_HEART = new ItemHeart(RED);
+    public static final Item HEART = new ItemHeart();
 }

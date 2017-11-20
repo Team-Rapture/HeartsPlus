@@ -1,7 +1,10 @@
 package mod.upcraftlp.heartsplus.entity;
 
+import mod.upcraftlp.heartsplus.handler.HeartsHandler;
 import mod.upcraftlp.heartsplus.util.EnumHeartType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -27,6 +30,11 @@ public class EntityHeart extends Entity {
         this.setPosition(x, y, z);
     }
 
+    public EntityHeart(ItemStack stack, World worldIn, double x, double y, double z) {
+        this(worldIn, x, y, z);
+        this.setHeartType(EnumHeartType.getTypeFromStack(stack));
+    }
+
     /**
      * set the {@link EnumHeartType}
      *
@@ -49,5 +57,11 @@ public class EntityHeart extends Entity {
 
     public EnumHeartType getType() {
         return this.type;
+    }
+
+    @Override
+    public void onCollideWithPlayer(EntityPlayer entityIn) {
+        this.setDead();
+        HeartsHandler.addHearts(entityIn, this.world, this.type, 1.0F);
     }
 }

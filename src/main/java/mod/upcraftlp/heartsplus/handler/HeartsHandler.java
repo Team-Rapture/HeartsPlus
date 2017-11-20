@@ -7,6 +7,9 @@ import mod.upcraftlp.heartsplus.util.EnumHeartType;
 import mod.upcraftlp.heartsplus.util.HeartProvider;
 import mod.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -14,9 +17,14 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.UUID;
 
 /**
  * @author UpcraftLP
@@ -26,9 +34,38 @@ public class HeartsHandler {
 
     private static final ResourceLocation HEARTS_CAP = new ResourceLocation(Reference.MODID, "hearts");
 
+    /**
+     * Opcodes: 0 = addition, 1 = additive scaling, 2 = multiplicative scaling
+     */
+    private static final UUID HEART_MODIFIER = UUID.fromString("a2ec6104-0d9d-45ae-8c27-616775886220");
+
     @SubscribeEvent
     public static void onAttachCapability(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof EntityPlayer) event.addCapability(HEARTS_CAP, new HeartProvider());
+    }
+
+    @SubscribeEvent
+    public static void onUpdate(TickEvent.PlayerTickEvent event) {
+        if(event.side == Side.CLIENT || event.phase != TickEvent.Phase.START) return;
+        EntityPlayer player = event.player;
+        IExtraHearts extraHearts = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
+        IAttributeInstance health = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
+        AttributeModifier health_modifier = health.getModifier(HEART_MODIFIER);
+        float amount = extraHearts.getRedHearts() * 2; //needs to be this way, *shrug*
+        if(health_modifier != null) {
+            if(health_modifier.getAmount() == amount) return;
+            health.removeModifier(HEART_MODIFIER);
+        }
+        health.applyModifier(new AttributeModifier(HEART_MODIFIER, Reference.MODID + ":red_hearts", amount, 0));
+        player.setHealth(player.getMaxHealth());
+    }
+
+    @SubscribeEvent
+    public static void onPlayerDeath(PlayerEvent.Clone event) {
+        EntityPlayer player = event.getEntityPlayer();
+        IExtraHearts extraHearts = event.getOriginal().getCapability(HeartProvider.HEARTS_CAPABILITY, null);
+        IExtraHearts extraHearts1 = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
+        extraHearts1.setHearts(extraHearts.getRedHearts(), 0, false);
     }
 
     @SubscribeEvent
@@ -84,9 +121,10 @@ public class HeartsHandler {
             case WHITE:
                 if(amount > 0) {
                     if(extraHearts.hasWhiteHeart()) {
-                        extraHearts.setHearts(extraHearts.getRedHearts() + 1, extraHearts.getBlackHearts(), false);
+                        extraHearts.setWhiteHeart(false);
+                        extraHearts.addRedHeart();
                         if(playSound)world.playSound(null, player.posX, player.posY, player.posZ, HeartsSounds.EVOLVE_HEART, SoundCategory.PLAYERS, 0.7F, 0.6F + player.getRNG().nextFloat() * 0.4F);
-                        player.sendMessage(new TextComponentString("you just evolved your white heart into a red one!")); //TODO remove debug output
+                        player.sendStatusMessage(new TextComponentString("you just evolved your white heart into a red one!"), true); //TODO remove debug output
                     }
                     else {
                         extraHearts.setWhiteHeart(true);
@@ -95,9 +133,8 @@ public class HeartsHandler {
                 }
                 else extraHearts.setWhiteHeart(false);
                 break;
-            case ROTTEN:
-
-                break;
+                //TODO add rotten heart?
         }
     }
+
 }

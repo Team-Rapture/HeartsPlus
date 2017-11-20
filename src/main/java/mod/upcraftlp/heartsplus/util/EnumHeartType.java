@@ -4,6 +4,7 @@ import mod.upcraftlp.heartsplus.Reference;
 import mod.upcraftlp.heartsplus.item.ItemHeart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Locale;
 
@@ -14,8 +15,8 @@ public enum EnumHeartType {
 
     RED,
     BLACK,
-    WHITE,
-    ROTTEN; //TODO rotten type
+    WHITE;
+    //ROTTEN; //TODO rotten type
 
     private final ResourceLocation texture;
 
@@ -28,6 +29,6 @@ public enum EnumHeartType {
     }
 
     public static EnumHeartType getTypeFromStack(ItemStack stack) {
-        return ((ItemHeart) stack.getItem()).heartType;
+        return values()[MathHelper.clamp(stack.getMetadata(), 0, values().length)];
     }
 }
