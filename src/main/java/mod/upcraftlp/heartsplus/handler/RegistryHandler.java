@@ -1,9 +1,11 @@
 package mod.upcraftlp.heartsplus.handler;
 
+import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.api.util.RegistryUtils;
 import mod.upcraftlp.heartsplus.Reference;
 import mod.upcraftlp.heartsplus.init.HeartsBlocks;
 import mod.upcraftlp.heartsplus.init.HeartsItems;
+import mod.upcraftlp.heartsplus.init.HeartsSounds;
 import mod.upcraftlp.heartsplus.init.HeartsTabs;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -11,6 +13,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.lang.reflect.Field;
+import java.util.Locale;
 
 /**
  * @author UpcraftLP
@@ -30,8 +35,8 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void onRegisterSounds(RegistryEvent.Register<SoundEvent> event) {
-        //for(Field f : HeartsSounds.class.getFields()) { //TODO move to core --> single line for mods
-        //    ModHelper.registerSound(f.getName().toLowerCase(Locale.ROOT), Reference.MODID);
-        //}
+        for(Field f : HeartsSounds.class.getFields()) { //TODO move to core --> single line for mods
+            ModHelper.registerSound(f.getName().toLowerCase(Locale.ROOT), Reference.MODID);
+        }
     }
 }

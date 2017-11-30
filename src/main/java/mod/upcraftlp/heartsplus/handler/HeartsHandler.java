@@ -41,7 +41,10 @@ public class HeartsHandler {
 
     @SubscribeEvent
     public static void onAttachCapability(AttachCapabilitiesEvent<Entity> event) {
-        if(event.getObject() instanceof EntityPlayer) event.addCapability(HEARTS_CAP, new HeartProvider());
+        if(event.getObject() instanceof EntityPlayer) {
+            event.addCapability(HEARTS_CAP, new HeartProvider());
+            HeartProvider.sync((EntityPlayer) event.getObject());
+        }
     }
 
     @SubscribeEvent
@@ -66,6 +69,7 @@ public class HeartsHandler {
         IExtraHearts extraHearts = event.getOriginal().getCapability(HeartProvider.HEARTS_CAPABILITY, null);
         IExtraHearts extraHearts1 = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
         extraHearts1.setHearts(extraHearts.getRedHearts(), 0, false);
+        HeartProvider.sync(player);
     }
 
     @SubscribeEvent
@@ -75,6 +79,7 @@ public class HeartsHandler {
             IExtraHearts extraHearts = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
             if(extraHearts.hasWhiteHeart()) {
                 addHearts(player, player.world, EnumHeartType.WHITE, 1);
+                HeartProvider.sync(player);
             }
         }
     }
@@ -100,6 +105,7 @@ public class HeartsHandler {
             }
             extraHearts.setBlackHearts(blackHearts > 0.0F ? blackHearts : 0.0F);
             event.setAmount(amount);
+            HeartProvider.sync(player);
         }
     }
 
@@ -135,6 +141,7 @@ public class HeartsHandler {
                 break;
                 //TODO add rotten heart?
         }
+        HeartProvider.sync(player);
     }
 
 }

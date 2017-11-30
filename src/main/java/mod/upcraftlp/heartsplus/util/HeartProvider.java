@@ -1,5 +1,9 @@
 package mod.upcraftlp.heartsplus.util;
 
+import core.upcraftlp.craftdev.api.net.NetworkHandler;
+import mod.upcraftlp.heartsplus.net.PacketExtraHearts;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -38,5 +42,9 @@ public class HeartProvider implements ICapabilitySerializable<NBTBase> {
     @Override
     public void deserializeNBT(NBTBase nbt) {
         HEARTS_CAPABILITY.getStorage().readNBT(HEARTS_CAPABILITY, this.instance, null, nbt);
+    }
+
+    public static void sync(EntityPlayer player) {
+        if(player instanceof EntityPlayerMP) NetworkHandler.INSTANCE.sendTo(new PacketExtraHearts(player.getCapability(HeartProvider.HEARTS_CAPABILITY, null)), (EntityPlayerMP) player);
     }
 }

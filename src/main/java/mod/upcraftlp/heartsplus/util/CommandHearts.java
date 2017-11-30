@@ -51,6 +51,7 @@ public class CommandHearts extends CommandBase {
             else if("set".equalsIgnoreCase(args[0])) hearts.setHearts(type == EnumHeartType.RED ? amount : hearts.getRedHearts(), type == EnumHeartType.BLACK ? amount : hearts.getBlackHearts(), type == EnumHeartType.WHITE ? (amount > 0) : hearts.hasWhiteHeart());
             else throw new WrongUsageException(getUsage(sender));
         }
+        HeartProvider.sync(player);
     }
 
     @Override
