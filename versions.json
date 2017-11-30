@@ -1,10 +1,10 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/heartsplus",
   "promos": {
-    "1.12.2-latest": "2.2.8",
-    "1.12.2-recommended": "2.2.8",
-    "1.12-latest": "2.2.8",
-    "1.12-recommended": "2.2.8"
+    "1.12.2-latest": "1.0.0",
+    "1.12.2-recommended": "1.0.0",
+    "1.12-latest": "1.0.0",
+    "1.12-recommended": "1.0.0"
   },
   "1.12": {
     "1.0.0": "* initial release"
