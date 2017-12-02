@@ -17,10 +17,11 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -43,8 +44,12 @@ public class HeartsHandler {
     public static void onAttachCapability(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof EntityPlayer) {
             event.addCapability(HEARTS_CAP, new HeartProvider());
-            HeartProvider.sync((EntityPlayer) event.getObject());
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) { //PlayerEvent$Clone
+        HeartProvider.sync(event.player);
     }
 
     @SubscribeEvent
@@ -64,7 +69,7 @@ public class HeartsHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerDeath(PlayerEvent.Clone event) {
+    public static void onPlayerDeath(Clone event) { //PlayerEvent$Clone
         EntityPlayer player = event.getEntityPlayer();
         IExtraHearts extraHearts = event.getOriginal().getCapability(HeartProvider.HEARTS_CAPABILITY, null);
         IExtraHearts extraHearts1 = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
