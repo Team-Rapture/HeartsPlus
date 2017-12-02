@@ -1,6 +1,7 @@
 package mod.upcraftlp.heartsplus.proxy;
 
 import core.upcraftlp.craftdev.api.net.NetworkHandler;
+import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
 import mod.upcraftlp.heartsplus.Reference;
 import mod.upcraftlp.heartsplus.net.PacketExtraHearts;
@@ -33,6 +34,6 @@ public class CommonProxy {
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandHearts());
+        if(ModHelper.isDebugMode()) event.registerServerCommand(new CommandHearts());
     }
 }
