@@ -40,7 +40,7 @@ public class HeartRenderHandler {
             int white = extraHearts.hasWhiteHeart() ? 1 : 0;
             float all = (float) (attrMaxHealth.getAttributeValue() + MathHelper.ceil(player.getAbsorptionAmount()) + extraHearts.getBlackHearts() + white);
 
-            int healthRows = MathHelper.ceil(all / 2.0F / 10.0F);
+            int healthRows = MathHelper.ceil(all / 20.0F);
             int rowHeight = Math.max(10 - (healthRows - 2), 3);
 
             int left = event.getResolution().getScaledWidth() / 2 - 91;
