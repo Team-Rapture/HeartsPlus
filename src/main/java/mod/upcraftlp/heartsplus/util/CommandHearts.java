@@ -41,7 +41,7 @@ public class CommandHearts extends CommandBase {
         IExtraHearts hearts = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
         if(args.length == 0) {
             sender.sendMessage(new TextComponentString("Red: " + hearts.getRedHearts()).setStyle(new Style().setColor(TextFormatting.RED)));
-            sender.sendMessage(new TextComponentString("Black: " + hearts.getBlackHearts()).setStyle(new Style().setColor(TextFormatting.BLACK)));
+            sender.sendMessage(new TextComponentString("Black: " + hearts.getBlackHearts()).setStyle(new Style().setColor(TextFormatting.BLUE)));
             sender.sendMessage(new TextComponentString("White: " + (hearts.hasWhiteHeart() ? "0.5" : "0")).setStyle(new Style().setColor(TextFormatting.WHITE)));
         }
         else {
