@@ -1,5 +1,8 @@
 package mod.upcraftlp.heartsplus.proxy;
 
+import mod.upcraftlp.heartsplus.client.render.RenderHeart;
+import mod.upcraftlp.heartsplus.entity.EntityHeart;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -16,6 +19,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
+		RenderingRegistry.registerEntityRenderingHandler(EntityHeart.class, RenderHeart.FACTORY);
 	}
 
 	@Override

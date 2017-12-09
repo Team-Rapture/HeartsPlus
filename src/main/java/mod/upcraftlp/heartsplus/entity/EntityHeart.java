@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 /**
@@ -22,7 +23,7 @@ public class EntityHeart extends Entity {
 
     @Override
     protected void entityInit() {
-
+        //NO-OP
     }
 
     public EntityHeart(World worldIn, double x, double y, double z) {
@@ -47,12 +48,12 @@ public class EntityHeart extends Entity {
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
-
+        this.type = EnumHeartType.values()[MathHelper.clamp(compound.getInteger("type"), 0, EnumHeartType.values().length - 1)];
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
-
+        compound.setInteger("type", this.type.ordinal());
     }
 
     public EnumHeartType getType() {
@@ -61,7 +62,7 @@ public class EntityHeart extends Entity {
 
     @Override
     public void onCollideWithPlayer(EntityPlayer entityIn) {
-        this.setDead();
         HeartsHandler.addHearts(entityIn, this.world, this.type, 1.0F);
+        this.setDead();
     }
 }
