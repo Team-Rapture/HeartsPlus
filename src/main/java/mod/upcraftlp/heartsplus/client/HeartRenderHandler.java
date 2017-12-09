@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -26,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class HeartRenderHandler {
 
     private static final Minecraft mc = Minecraft.getMinecraft();
+    private static final ResourceLocation HEARTS_GUI_TEXTURE = new ResourceLocation(Reference.MODID, "textures/gui/overlay/hearts.png");
 
     @SubscribeEvent
     public static void onRenderHotbar(RenderGameOverlayEvent.Pre event) {
@@ -52,7 +54,7 @@ public class HeartRenderHandler {
                 int y = top - row * rowHeight;
                 mc.renderEngine.bindTexture(Gui.ICONS);
                 Gui.drawModalRectWithCustomSizedTexture(x, y, 16, 9 * (mc.world.getWorldInfo().isHardcoreModeEnabled() ? 5 : 0), 9, 9, 256, 256);
-                mc.renderEngine.bindTexture(RenderHeart.TEXTURE);
+                mc.renderEngine.bindTexture(HEARTS_GUI_TEXTURE);
                 if(black > 0) {
                     black -= 1;
                     Gui.drawModalRectWithCustomSizedTexture(x + 1, y + 1, 0, 7, 7, 7, 16, 16);

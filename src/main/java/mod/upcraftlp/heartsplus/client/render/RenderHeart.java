@@ -50,12 +50,13 @@ public class RenderHeart extends Render<EntityHeart> {
         else return TextureMap.LOCATION_MISSING_TEXTURE;
     }
 
+
     @Override
-    public void doRender(EntityHeart entity, double x, double y, double z, float entityYaw, float partialTicks) { //TODO make texture always face the player!
+    public void doRender(EntityHeart entity, double x, double y, double z, float entityYaw, float partialTicks) {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 0);
-        GlStateManager.rotate(Minecraft.getMinecraft().player. 0, 1, 0);
+        //GlStateManager.rotate(Minecraft.getMinecraft().player. 0, 1, 0);//TODO make texture always face the player!
         bindEntityTexture(entity);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
