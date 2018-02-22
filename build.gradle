@@ -21,8 +21,10 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
+import java.time.Year
 
-def username = "${mod_name}"
+
+def username = "${modid}"
 if (project.hasProperty('dev_mail')) {
     username = "${dev_mail}"
 }
@@ -31,9 +33,9 @@ else if(project.hasProperty('dev_username')) {
 }
 
 version = "${project.mc_version}-${project.mod_version}"
-group= project.base_package // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = project.maven_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //noinspection GroovyUnusedAssignment
-archivesBaseName = project.mod_name
+archivesBaseName = project.modid
 
 sourceCompatibility = targetCompatibility = project.jvm_version // Need this here so eclipse task generates correctly.
 compileJava {
@@ -43,6 +45,7 @@ compileJava {
 repositories {
     maven {
         //JEI files
+        //Mantle
         url = "http://dvs1.progwml6.com/files/maven"
     }
     maven {
@@ -56,11 +59,19 @@ repositories {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
     }
+
+    maven {
+        name = "JitPack"
+        url = "https://jitpack.io"
+    }
 }
 
 minecraft {
     version = "${project.mc_version}-${project.forge_version}"
-    if(file('../run').exists()) {
+    if(project.hasProperty('runDir')) {
+        runDir = project.runDir
+    }
+    else if(file('../run').exists()) {
 		runDir = "../run"
 	}
 	else
@@ -72,10 +83,10 @@ minecraft {
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	
 	replace "@VERSION@", project.mod_version
-    if(project.hasProperty('public_key')) {
-        replace "@FINGERPRINTKEY@", "${project.public_key}".replace(":", "").toLowerCase(Locale.ROOT)
-    }
-    replaceIn "mod/upcraftlp/heartsplus/Reference.java"
+    def fingerPrintKey = project.hasProperty('public_key') ? findProperty('public_key').replace(":", "").toLowerCase(Locale.ROOT) : "undefined"
+    replace "@FINGERPRINTKEY@", fingerPrintKey
+    replace "@UPDATE_JSON@", project.update_json
+    replaceIn "${project.reference_class}"
 
     //auto-configure the run arguments
     clientRunArgs += "--username=${username}"
@@ -83,11 +94,71 @@ minecraft {
         clientRunArgs += "--password=${dev_password}"
     }
     serverRunArgs += "nogui" //mc server GUIs suck :P
+    
+    serverJvmArgs += "-Dfml.doNotBackup=true"
+    clientJvmArgs += "-Dfml.doNotBackup=true"
 
-    //add the coremod to the dev environment
-    //clientJvmArgs += "-Dfml.coreMods.load="
-    //serverJvmArgs += "-Dfml.coreMods.load="
     serverJvmArgs += "-Dfml.queryResult=confirm"
+}
+
+dependencies {
+
+    //JEI (runtime only)
+    runtime "mezz.jei:jei_${project.mc_version}:${project.jei_version}"
+
+    def noJEI = {
+        exclude group: "mezz.jei", module: "jei_${project.mc_version}"
+    }
+
+    //craftdev-core (from JitPack)
+    deobfProvided "com.github.UpcraftLP:CraftDev-Core:${project.core_version}:api", noJEI
+    runtime "com.github.UpcraftLP:CraftDev-Core:${project.core_version}", noJEI
+
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+jar {
+    manifest.mainAttributes(
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${project.mod_version}",
+            "Built-On": "${project.mc_version}-${project.forge_version}",
+            "Maven-Artifact":"${project.group}:${project.archivesBaseName}:${project.version}",
+            "FMLAT": "${project.mod_name}_at.cfg"
+    )
+}
+
+//sign Jar
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    onlyIf {
+        project.hasProperty('sign_keyStore')
+    }
+    keyPass = findProperty('sign_keyPass')
+    keyStore = findProperty('sign_keyStore')
+    storePass = findProperty('sign_storePass')
+    alias = findProperty('sign_alias')
+
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+}
+
+tasks.build.dependsOn signJar
+tasks.curseforge.dependsOn build
+
+artifacts {
+    //archives apiJar
+    //archives deobfJar
+    //archives javadocJar
 }
 
 sourceSets {
@@ -102,52 +173,12 @@ sourceSets {
 	}
 }
 
-jar {
-    manifest.mainAttributes(
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${project.mod_version}",
-            "Built-On": "${project.mc_version}-${project.forge_version}",
-            "FMLAT": "${project.mod_name}_at.cfg"
-    )
-}
-
-task signJar(type: SignJar, dependsOn: reobfJar) {
-    if(project.hasProperty('sign_keyStore')) {
-        keyPass = "${sign_keyPass}"
-        keyStore = "${sign_keyStore}"
-        storePass = "${sign_storePass}"
-        alias = "${sign_alias}"
-    }
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
-}
-
-dependencies {
-
-    //compile against the JEI api
-    //compile "mezz.jei:jei_${project.mc_version}:${project.jei_version}:api"
-
-    // at runtime, use the full JEI jar
-    runtime "mezz.jei:jei_${project.mc_version}:${project.jei_version}"
-
-    //craftdev-core
-    deobfCompile "craftdev-core:craftdev-core:${project.mc_version}:${project.core_version}"
-}
-tasks.build.dependsOn signJar
-tasks.curseforge.dependsOn build
 
 def curseRelations = {
     requiredLibrary 'craftdev-core'
     //optionalLibrary '' //add curseforge-slug here
 }
+
 
 curseforge {
     if (project.hasProperty('curse_key'))
@@ -162,7 +193,6 @@ curseforge {
 
             relations curseRelations
 
-            //no such jars for now
             //addArtifact javadocJar
             //addArtifact sourceJar
             //addArtifact apiJar
@@ -172,7 +202,7 @@ curseforge {
             addGameVersion '1.12.2'
 
             mainArtifact(jar) {
-                displayName = "Hearts+ Mod v${project.mod_version} MC${project.mc_version}"
+                displayName = "${project.mod_name} v${project.mod_version} MC${project.mc_version}"
             }
         }
     }
@@ -189,7 +219,7 @@ processResources
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':version, 'mcversion':project.minecraft.version
+        expand 'version':version, 'mcversion':project.minecraft.version, 'mod_name':project.mod_name, 'mod_description':project.mod_description, 'url':project.url, 'update_url':project.update_json, 'year':Year.now().getValue()
     }
         
     // copy everything else, thats not the mcmod.info

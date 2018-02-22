@@ -1,4 +1,4 @@
-package mod.upcraftlp.heartsplus;
+package com.github.upcraftlp.heartsplus;
 
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -6,7 +6,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static mod.upcraftlp.heartsplus.Reference.*;
+import static com.github.upcraftlp.heartsplus.Reference.*;
 
 /**
  * @author UpcraftLP

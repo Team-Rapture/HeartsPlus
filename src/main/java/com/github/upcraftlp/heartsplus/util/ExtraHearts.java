@@ -1,4 +1,4 @@
-package mod.upcraftlp.heartsplus.util;
+package com.github.upcraftlp.heartsplus.util;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

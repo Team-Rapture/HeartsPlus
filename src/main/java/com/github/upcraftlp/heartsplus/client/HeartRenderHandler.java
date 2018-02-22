@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
@@ -35,17 +36,15 @@ public class HeartRenderHandler {
             EntityPlayer player = mc.player;
 
             IExtraHearts extraHearts = player.getCapability(HeartProvider.HEARTS_CAPABILITY, null);
-            IAttributeInstance attrMaxHealth = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
             float black = extraHearts.getBlackHearts();
             int white = extraHearts.hasWhiteHeart() ? 1 : 0;
-            float all = (float) (attrMaxHealth.getAttributeValue() + MathHelper.ceil(player.getAbsorptionAmount()) + extraHearts.getBlackHearts() + white);
+            float all = player.getMaxHealth() + MathHelper.ceil(player.getAbsorptionAmount()) + extraHearts.getBlackHearts() + white;
 
             int healthRows = MathHelper.ceil(all / 20.0F);
             int rowHeight = Math.max(10 - (healthRows - 2), 3);
 
             int left = event.getResolution().getScaledWidth() / 2 - 91;
             int top = event.getResolution().getScaledHeight() - GuiIngameForge.left_height;
-
             mc.mcProfiler.startSection(Reference.MODID + ":hearts");
             GlStateManager.enableBlend();
             for (int i = MathHelper.ceil(all / 2.0F) - 1; black > 0 || white > 0; --i) {

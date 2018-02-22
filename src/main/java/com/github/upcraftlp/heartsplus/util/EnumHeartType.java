@@ -1,7 +1,6 @@
-package mod.upcraftlp.heartsplus.util;
+package com.github.upcraftlp.heartsplus.util;
 
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.item.ItemHeart;
+import com.github.upcraftlp.heartsplus.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;

@@ -1,7 +1,7 @@
-package mod.upcraftlp.heartsplus.util;
+package com.github.upcraftlp.heartsplus.util;
 
 import core.upcraftlp.craftdev.api.net.NetworkHandler;
-import mod.upcraftlp.heartsplus.net.PacketExtraHearts;
+import com.github.upcraftlp.heartsplus.net.PacketExtraHearts;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;

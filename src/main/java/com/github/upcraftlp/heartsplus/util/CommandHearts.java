@@ -1,7 +1,7 @@
-package mod.upcraftlp.heartsplus.util;
+package com.github.upcraftlp.heartsplus.util;
 
+import com.github.upcraftlp.heartsplus.handler.HeartsHandler;
 import com.google.common.collect.Lists;
-import mod.upcraftlp.heartsplus.handler.HeartsHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

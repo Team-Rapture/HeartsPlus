@@ -1,4 +1,4 @@
-package mod.upcraftlp.heartsplus;
+package com.github.upcraftlp.heartsplus;
 
 import com.google.common.collect.Lists;
 import net.minecraft.util.text.TextFormatting;
@@ -26,7 +26,7 @@ public class Reference {
     public static final String UPDATE_JSON = "https://raw.githubusercontent.com/UpcraftLP/HeartsPlus/master/versions.json";
     public static final String WEBSITE = "https://minecraft.curseforge.com/projects/heartsplus";
 
-    public static final String CLIENTPROXY = "mod.upcraftlp.heartsplus.proxy.ClientProxy";
-    public static final String SERVERPROXY = "mod.upcraftlp.heartsplus.proxy.ServerProxy";
+    public static final String CLIENTPROXY = "com.github.upcraftlp.heartsplus.proxy.ClientProxy";
+    public static final String SERVERPROXY = "com.github.upcraftlp.heartsplus.proxy.ServerProxy";
     public static final String FINGERPRINT_KEY = "@FINGERPRINT@";
 }
