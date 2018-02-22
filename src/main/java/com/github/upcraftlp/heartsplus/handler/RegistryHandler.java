@@ -1,12 +1,12 @@
-package mod.upcraftlp.heartsplus.handler;
+package com.github.upcraftlp.heartsplus.handler;
 
 import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.api.util.RegistryUtils;
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.init.HeartsBlocks;
-import mod.upcraftlp.heartsplus.init.HeartsItems;
-import mod.upcraftlp.heartsplus.init.HeartsSounds;
-import mod.upcraftlp.heartsplus.init.HeartsTabs;
+import com.github.upcraftlp.heartsplus.Reference;
+import com.github.upcraftlp.heartsplus.init.HeartsBlocks;
+import com.github.upcraftlp.heartsplus.init.HeartsItems;
+import com.github.upcraftlp.heartsplus.init.HeartsSounds;
+import com.github.upcraftlp.heartsplus.init.HeartsTabs;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;

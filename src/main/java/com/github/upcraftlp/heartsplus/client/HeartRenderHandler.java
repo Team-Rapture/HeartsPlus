@@ -1,16 +1,12 @@
-package mod.upcraftlp.heartsplus.client;
+package com.github.upcraftlp.heartsplus.client;
 
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.client.render.RenderHeart;
-import mod.upcraftlp.heartsplus.util.HeartProvider;
-import mod.upcraftlp.heartsplus.util.IExtraHearts;
+import com.github.upcraftlp.heartsplus.Reference;
+import com.github.upcraftlp.heartsplus.util.HeartProvider;
+import com.github.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;

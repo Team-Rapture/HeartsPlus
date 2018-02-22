@@ -1,11 +1,11 @@
-package mod.upcraftlp.heartsplus.handler;
+package com.github.upcraftlp.heartsplus.handler;
 
-import mod.upcraftlp.heartsplus.Main;
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.init.HeartsSounds;
-import mod.upcraftlp.heartsplus.util.EnumHeartType;
-import mod.upcraftlp.heartsplus.util.HeartProvider;
-import mod.upcraftlp.heartsplus.util.IExtraHearts;
+import com.github.upcraftlp.heartsplus.Main;
+import com.github.upcraftlp.heartsplus.Reference;
+import com.github.upcraftlp.heartsplus.init.HeartsSounds;
+import com.github.upcraftlp.heartsplus.util.EnumHeartType;
+import com.github.upcraftlp.heartsplus.util.HeartProvider;
+import com.github.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;

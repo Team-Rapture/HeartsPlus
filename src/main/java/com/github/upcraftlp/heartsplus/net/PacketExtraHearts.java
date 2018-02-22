@@ -1,8 +1,8 @@
-package mod.upcraftlp.heartsplus.net;
+package com.github.upcraftlp.heartsplus.net;
 
+import com.github.upcraftlp.heartsplus.util.HeartProvider;
+import com.github.upcraftlp.heartsplus.util.IExtraHearts;
 import io.netty.buffer.ByteBuf;
-import mod.upcraftlp.heartsplus.util.HeartProvider;
-import mod.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;

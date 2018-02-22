@@ -1,8 +1,6 @@
-package mod.upcraftlp.heartsplus.client.render;
+package com.github.upcraftlp.heartsplus.client.render;
 
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.entity.EntityHeart;
-import net.minecraft.client.Minecraft;
+import com.github.upcraftlp.heartsplus.entity.EntityHeart;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,7 +8,6 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;

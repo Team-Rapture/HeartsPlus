@@ -3,7 +3,7 @@
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package mod.upcraftlp.heartsplus.client.render;
+package com.github.upcraftlp.heartsplus.client.render;
 
 import mcp.MethodsReturnNonnullByDefault;
 

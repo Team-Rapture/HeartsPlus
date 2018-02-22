@@ -1,24 +1,18 @@
-package mod.upcraftlp.heartsplus.item;
+package com.github.upcraftlp.heartsplus.item;
 
 import core.upcraftlp.craftdev.api.item.Item;
-import mod.upcraftlp.heartsplus.entity.EntityHeart;
-import mod.upcraftlp.heartsplus.handler.HeartsHandler;
-import mod.upcraftlp.heartsplus.util.EnumHeartType;
-import mod.upcraftlp.heartsplus.util.HeartProvider;
-import mod.upcraftlp.heartsplus.util.IExtraHearts;
-import net.minecraft.creativetab.CreativeTabs;
+import com.github.upcraftlp.heartsplus.entity.EntityHeart;
+import com.github.upcraftlp.heartsplus.handler.HeartsHandler;
+import com.github.upcraftlp.heartsplus.util.EnumHeartType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Locale;
 
 /**
  * @author UpcraftLP

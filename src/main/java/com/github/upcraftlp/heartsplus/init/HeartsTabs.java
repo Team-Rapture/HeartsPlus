@@ -1,4 +1,4 @@
-package mod.upcraftlp.heartsplus.init;
+package com.github.upcraftlp.heartsplus.init;
 
 import core.upcraftlp.craftdev.api.creativetab.CreativeTab;
 

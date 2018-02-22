@@ -3,7 +3,7 @@
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package mod.upcraftlp.heartsplus.init;
+package com.github.upcraftlp.heartsplus.init;
 
 import mcp.MethodsReturnNonnullByDefault;
 

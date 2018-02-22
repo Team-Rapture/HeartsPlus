@@ -3,7 +3,7 @@
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package mod.upcraftlp.heartsplus.proxy;
+package com.github.upcraftlp.heartsplus.proxy;
 
 import mcp.MethodsReturnNonnullByDefault;
 

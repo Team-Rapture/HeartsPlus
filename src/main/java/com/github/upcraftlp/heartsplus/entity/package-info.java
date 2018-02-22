@@ -3,7 +3,7 @@
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package mod.upcraftlp.heartsplus.entity;
+package com.github.upcraftlp.heartsplus.entity;
 
 import mcp.MethodsReturnNonnullByDefault;
 

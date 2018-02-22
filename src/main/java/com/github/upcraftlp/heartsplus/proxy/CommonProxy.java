@@ -1,13 +1,13 @@
-package mod.upcraftlp.heartsplus.proxy;
+package com.github.upcraftlp.heartsplus.proxy;
 
 import core.upcraftlp.craftdev.api.net.NetworkHandler;
 import core.upcraftlp.craftdev.api.util.ModHelper;
 import core.upcraftlp.craftdev.api.util.UpdateChecker;
-import mod.upcraftlp.heartsplus.Reference;
-import mod.upcraftlp.heartsplus.net.PacketExtraHearts;
-import mod.upcraftlp.heartsplus.util.CommandHearts;
-import mod.upcraftlp.heartsplus.util.ExtraHearts;
-import mod.upcraftlp.heartsplus.util.IExtraHearts;
+import com.github.upcraftlp.heartsplus.Reference;
+import com.github.upcraftlp.heartsplus.net.PacketExtraHearts;
+import com.github.upcraftlp.heartsplus.util.CommandHearts;
+import com.github.upcraftlp.heartsplus.util.ExtraHearts;
+import com.github.upcraftlp.heartsplus.util.IExtraHearts;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

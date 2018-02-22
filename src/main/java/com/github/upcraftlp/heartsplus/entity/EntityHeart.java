@@ -1,7 +1,7 @@
-package mod.upcraftlp.heartsplus.entity;
+package com.github.upcraftlp.heartsplus.entity;
 
-import mod.upcraftlp.heartsplus.handler.HeartsHandler;
-import mod.upcraftlp.heartsplus.util.EnumHeartType;
+import com.github.upcraftlp.heartsplus.handler.HeartsHandler;
+import com.github.upcraftlp.heartsplus.util.EnumHeartType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

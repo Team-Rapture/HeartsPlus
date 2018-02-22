@@ -1,7 +1,7 @@
-package mod.upcraftlp.heartsplus.proxy;
+package com.github.upcraftlp.heartsplus.proxy;
 
-import mod.upcraftlp.heartsplus.client.render.RenderHeart;
-import mod.upcraftlp.heartsplus.entity.EntityHeart;
+import com.github.upcraftlp.heartsplus.entity.EntityHeart;
+import com.github.upcraftlp.heartsplus.client.render.RenderHeart;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

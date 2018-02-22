@@ -3,7 +3,7 @@
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package mod.upcraftlp.heartsplus;
+package com.github.upcraftlp.heartsplus;
 
 import mcp.MethodsReturnNonnullByDefault;
 import javax.annotation.ParametersAreNonnullByDefault;

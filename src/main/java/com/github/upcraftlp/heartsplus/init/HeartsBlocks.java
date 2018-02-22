@@ -1,6 +1,6 @@
-package mod.upcraftlp.heartsplus.init;
+package com.github.upcraftlp.heartsplus.init;
 
-import mod.upcraftlp.heartsplus.Reference;
+import com.github.upcraftlp.heartsplus.Reference;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
