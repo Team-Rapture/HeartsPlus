@@ -7,3 +7,5 @@
 #Misc
 itemGroup.heartsplus.name=Hearts Plus
 config.heartsplus.title=Hearts Plus
+
+gui.heartsplus.blackHeartCount=×%s

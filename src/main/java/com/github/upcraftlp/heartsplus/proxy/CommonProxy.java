@@ -22,7 +22,7 @@ public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         UpdateChecker.registerMod(Reference.MODID);
-        CapabilityManager.INSTANCE.register(IExtraHearts.class, new ExtraHearts.Storage(), ExtraHearts.class);
+        CapabilityManager.INSTANCE.register(IExtraHearts.class, new ExtraHearts.Storage(), ExtraHearts::new);
         NetworkHandler.registerPacket(PacketExtraHearts.Handler.class, PacketExtraHearts.class, Side.CLIENT);
     }
 

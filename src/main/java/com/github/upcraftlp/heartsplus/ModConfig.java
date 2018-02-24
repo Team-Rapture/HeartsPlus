@@ -15,6 +15,8 @@ import static com.github.upcraftlp.heartsplus.Reference.*;
 @Config.LangKey("config." + MODID + ".title")
 public class ModConfig {
 
+    @Config.Comment("if enabled will show numbers instead of rendering black hearts")
+    public static boolean reducedRender = false;
     //config values here
     //TODO world gen configurable
 

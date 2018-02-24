@@ -14,8 +14,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -46,7 +45,7 @@ public class CommandHearts extends CommandBase {
         }
         else {
             float amount = (float) parseDouble(args[2]);
-            EnumHeartType type = EnumHeartType.values()[parseInt(args[1], 0, EnumHeartType.values().length - 1)];
+            EnumHeartType type = EnumHeartType.valueOf(args[1].toUpperCase(Locale.ROOT));
             if("add".equalsIgnoreCase(args[0])) HeartsHandler.addHearts(player, player.getEntityWorld(), type, amount, false);
             else if("set".equalsIgnoreCase(args[0])) hearts.setHearts(type == EnumHeartType.RED ? amount : hearts.getRedHearts(), type == EnumHeartType.BLACK ? amount : hearts.getBlackHearts(), type == EnumHeartType.WHITE ? (amount > 0) : hearts.hasWhiteHeart());
             else throw new WrongUsageException(getUsage(sender));
@@ -60,7 +59,11 @@ public class CommandHearts extends CommandBase {
             case 1:
                 return getListOfStringsMatchingLastWord(args, Lists.newArrayList("set", "add"));
             case 2:
-                return getListOfStringsMatchingLastWord(args, IntStream.range(0, EnumHeartType.values().length).boxed().collect(Collectors.toList()));
+                String[] values = new String[EnumHeartType.values().length];
+                for (int i = 0; i< EnumHeartType.values().length; i++) {
+                    values[i] = EnumHeartType.values()[i].name().toLowerCase(Locale.ROOT);
+                }
+                return getListOfStringsMatchingLastWord(args, values);
             default:
                 return Collections.emptyList();
         }
