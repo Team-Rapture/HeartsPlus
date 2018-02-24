@@ -68,7 +68,6 @@ public class HeartRenderHandler {
 
             if(ModConfig.reducedRender) {
                 y -= 10;
-                //y -= vanillaRows * rowHeight * 0.005F;
                 x = left;
                 if (black > 0) {
 
