@@ -86,7 +86,7 @@ minecraft {
     def fingerPrintKey = project.hasProperty('public_key') ? findProperty('public_key').replace(":", "").toLowerCase(Locale.ROOT) : "undefined"
     replace "@FINGERPRINTKEY@", fingerPrintKey
     replace "@UPDATE_JSON@", project.update_json
-    replaceIn "${project.reference_class}"
+    replaceIn project.reference_class
 
     //auto-configure the run arguments
     clientRunArgs += "--username=${username}"
@@ -99,6 +99,11 @@ minecraft {
     clientJvmArgs += "-Dfml.doNotBackup=true"
 
     serverJvmArgs += "-Dfml.queryResult=confirm"
+    
+    //skip jansi warnings in the log
+    serverJvmArgs += "-Dlog4j.skipJansi=true"
+    clientJvmArgs += "-Dlog4j.skipJansi=true"
+    
 }
 
 dependencies {
@@ -111,8 +116,9 @@ dependencies {
     }
 
     //craftdev-core (from JitPack)
-    deobfProvided "com.github.UpcraftLP:CraftDev-Core:${project.core_version}:api", noJEI
-    runtime "com.github.UpcraftLP:CraftDev-Core:${project.core_version}", noJEI
+    //TODO uncomment when releasing v3.0.0
+    //deobfProvided "com.github.UpcraftLP:CraftDev-Core:${project.core_version}:api", noJEI
+    //runtime "com.github.UpcraftLP:CraftDev-Core:${project.core_version}", noJEI
 
 }
 
